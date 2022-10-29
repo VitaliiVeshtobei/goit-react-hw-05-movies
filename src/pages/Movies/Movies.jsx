@@ -3,9 +3,11 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FcSearch } from 'react-icons/fc';
 import { searchQueryApi } from 'components/searchApi';
+import { FilmNavigate } from '../../components/FilmNav';
 
 export const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [Api, setApi] = useState([]);
 
   const handleChangeSearchQuery = evt => {
     setSearchQuery(evt.currentTarget.value);
@@ -25,22 +27,26 @@ export const Movies = () => {
       return;
     }
     searchQueryApi(searchQuery).then(res => {
-      console.log(res);
+      setApi(res.data.results);
     });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <ToastContainer />
-      <input
-        type="text"
-        autoComplete="off"
-        autoFocus
-        placeholder="Search movies"
-        onChange={handleChangeSearchQuery}
-      />
-      <button type="submit">
-        <FcSearch />
-      </button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <ToastContainer />
+        <input
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search movies"
+          onChange={handleChangeSearchQuery}
+        />
+        <button type="submit">
+          <FcSearch />
+        </button>
+      </form>
+
+      <FilmNavigate Api={Api} />
+    </>
   );
 };

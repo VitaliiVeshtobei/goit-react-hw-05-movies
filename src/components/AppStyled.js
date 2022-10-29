@@ -12,4 +12,7 @@ export const Nav = styled('nav')`
 `;
 export const NavItem = styled(NavLink)`
   color: black;
+  &.active {
+    color: orange;
+  }
 `;
