@@ -1,24 +1,25 @@
 import { Route, Routes } from 'react-router-dom';
+import { ShraedLayout } from '../components/SharedLayout';
 import { Home } from '../pages/Home/Home';
 import { Movies } from '../pages/Movies/Movies';
-import { NavItem } from './AppStyled';
-import { Nav } from './AppStyled';
+
 import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
+import { Cast } from './Cast';
+import { Reviews } from './Reviews';
 
 export const App = () => {
   return (
     <>
-      <Nav>
-        <NavItem to="/" end>
-          Home
-        </NavItem>
-        <NavItem to="/movies">Movies</NavItem>
-      </Nav>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/movies" element={<Movies />}></Route>
-        <Route path="/movies/:movieId" element={<MovieDetails />} />
-        <Route path="*" element={<div>NOTFound</div>} />
+        <Route path="/" element={<ShraedLayout />}>
+          <Route index element={<Home />}></Route>
+          <Route path="movies" element={<Movies />}></Route>
+          <Route path="movies/:movieId" element={<MovieDetails />}>
+            <Route path="Cast" element={<Cast />}></Route>
+            <Route path="Reviews" element={<Reviews />}></Route>
+          </Route>
+          <Route path="*" element={<div>NOTFound</div>} />
+        </Route>
       </Routes>
     </>
   );

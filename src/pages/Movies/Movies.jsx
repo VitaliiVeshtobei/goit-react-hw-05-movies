@@ -1,20 +1,24 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { FcSearch } from 'react-icons/fc';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { searchQueryApi } from 'components/searchApi';
 import { FilmNavigate } from '../../components/FilmNav';
 
 export const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  // const [searchQuery, setSearchQuery] = useState('');
   const [Api, setApi] = useState([]);
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
   const handleChangeSearchQuery = evt => {
-    setSearchQuery(evt.currentTarget.value);
+    setSearchParams({ query: evt.currentTarget.value });
+    // setSearchQuery(evt.currentTarget.value);
   };
   const handleSubmit = async evt => {
     evt.preventDefault();
-    if (searchQuery.trim() === '') {
+    if (query.trim() === '') {
       toast.error('Enter the name of the movie!', {
         position: 'top-right',
         autoClose: 3000,
@@ -26,7 +30,7 @@ export const Movies = () => {
       });
       return;
     }
-    searchQueryApi(searchQuery).then(res => {
+    searchQueryApi(query).then(res => {
       setApi(res.data.results);
     });
   };
