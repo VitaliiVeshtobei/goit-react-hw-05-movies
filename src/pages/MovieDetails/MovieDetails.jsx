@@ -1,33 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Outlet, Link } from 'react-router-dom';
+import { useParams, useLocation, Outlet, Link } from 'react-router-dom';
 import { detailsApi } from '../../components/searchApi';
 import { Container, ContainerInfo } from './MovieDetailsStyled';
 
-export const MovieDetails = () => {
-  const navigate = useNavigate();
-
+const MovieDetails = () => {
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
   const [api, setApi] = useState([]);
   const { movieId } = useParams();
   useEffect(() => {
     detailsApi(movieId).then(resp => {
       setApi(resp.data);
     });
-    return () => {
-      const controller = new AbortController();
-      controller.abort();
-    };
   }, [movieId]);
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        Go back
-      </button>
+      <Link to={backLinkHref}>Back</Link>
       <Container>
         <img
           src={`https://image.tmdb.org/t/p/w500/${api.poster_path}`}
@@ -57,3 +46,4 @@ export const MovieDetails = () => {
     </>
   );
 };
+export default MovieDetails;

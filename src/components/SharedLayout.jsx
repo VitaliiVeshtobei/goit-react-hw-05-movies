@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavItem, Nav } from './AppStyled';
 
@@ -10,7 +11,9 @@ export const ShraedLayout = () => {
         </NavItem>
         <NavItem to="/movies">Movies</NavItem>
       </Nav>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

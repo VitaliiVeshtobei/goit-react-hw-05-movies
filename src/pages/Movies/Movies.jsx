@@ -7,14 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { searchQueryApi } from 'components/searchApi';
 import { FilmNavigate } from '../../components/FilmNav';
 
-export const Movies = () => {
-  // const [searchQuery, setSearchQuery] = useState('');
+const Movies = () => {
   const [Api, setApi] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
   const handleChangeSearchQuery = evt => {
     setSearchParams({ query: evt.currentTarget.value });
-    // setSearchQuery(evt.currentTarget.value);
   };
   const handleSubmit = async evt => {
     evt.preventDefault();
@@ -54,3 +52,4 @@ export const Movies = () => {
     </>
   );
 };
+export default Movies;

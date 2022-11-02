@@ -1,11 +1,13 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ShraedLayout } from '../components/SharedLayout';
-import { Home } from '../pages/Home/Home';
-import { Movies } from '../pages/Movies/Movies';
-
-import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
 import { Cast } from './Cast';
 import { Reviews } from './Reviews';
+import { NotFound } from './NotFound';
+
+const Home = lazy(() => import('../pages/Home/Home'));
+const Movies = lazy(() => import('../pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
 
 export const App = () => {
   return (
@@ -18,7 +20,7 @@ export const App = () => {
             <Route path="Cast" element={<Cast />}></Route>
             <Route path="Reviews" element={<Reviews />}></Route>
           </Route>
-          <Route path="*" element={<div>NOTFound</div>} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>

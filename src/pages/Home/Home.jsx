@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { searchTrendApi } from 'components/searchApi';
 import { FilmNavigate } from '../../components/FilmNav';
 
-export const Home = () => {
+const Home = () => {
   const [Api, setApi] = useState([]);
   useEffect(() => {
     searchTrendApi().then(res => {
@@ -17,3 +17,4 @@ export const Home = () => {
     </>
   );
 };
+export default Home;
