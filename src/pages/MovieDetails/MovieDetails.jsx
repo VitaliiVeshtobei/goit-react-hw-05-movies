@@ -1,13 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams, useLocation, Outlet, Link } from 'react-router-dom';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { detailsApi } from '../../components/searchApi';
-import { Container, ContainerInfo } from './MovieDetailsStyled';
+import {
+  Container,
+  ContainerInfo,
+  LinkBack,
+  LinkMoreDetails,
+  LinkList,
+} from './MovieDetailsStyled';
 
 const MovieDetails = () => {
   const [api, setApi] = useState([]);
   const location = useLocation();
   const backPage = useRef(location.state?.from ?? null);
   const { movieId } = useParams();
+
   useEffect(() => {
     detailsApi(movieId).then(resp => {
       setApi(resp.data);
@@ -17,7 +24,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={backLinkHref}>Back</Link>
+      <LinkBack to={backLinkHref}>Back</LinkBack>
       <Container>
         <img
           src={`https://image.tmdb.org/t/p/w500/${api.poster_path}`}
@@ -27,22 +34,34 @@ const MovieDetails = () => {
           <h1>{api.original_title}</h1>
           <p>
             User score:
-            {api.popularity ? api.popularity.toFixed(0) : 'no popularity'}%
+            {api.vote_average
+              ? api.vote_average.toFixed(1) * 10
+              : 'no popularity'}
+            %
           </p>
           <h2>Overview</h2>
           <p>{api.overview}</p>
           <h3>Genres</h3>
-          {/* <p>{api.genres.map(genre => genre.name)}</p> */}
+          <p>
+            {api.length !== 0
+              ? api.genres.map((genre, idx) => {
+                  if (api.genres.length - 1 !== idx) {
+                    return `${genre.name}, `;
+                  }
+                  return `${genre.name}`;
+                })
+              : 'no genres'}
+          </p>
         </ContainerInfo>
       </Container>
-      <ul>
+      <LinkList>
         <li>
-          <Link to="Cast">Cast</Link>
+          <LinkMoreDetails to="Cast">Cast</LinkMoreDetails>
         </li>
         <li>
-          <Link to="Reviews">Reviews</Link>
+          <LinkMoreDetails to="Reviews">Reviews</LinkMoreDetails>
         </li>
-      </ul>
+      </LinkList>
       <Outlet />
     </>
   );

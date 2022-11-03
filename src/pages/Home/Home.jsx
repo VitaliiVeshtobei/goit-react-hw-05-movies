@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { searchTrendApi } from 'components/searchApi';
-import { FilmNavigate } from '../../components/FilmNav';
-
+import { FilmNavigate } from '../../components/FilmNav/FilmNav';
+import { Title } from './HomeStyled';
 const Home = () => {
   const [Api, setApi] = useState([]);
   useEffect(() => {
@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Trending today</h1>
+      <Title>Trending today</Title>
       <FilmNavigate Api={Api} />
     </>
   );

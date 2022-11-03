@@ -5,7 +5,8 @@ import { FcSearch } from 'react-icons/fc';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { searchQueryApi } from 'components/searchApi';
-import { FilmNavigate } from '../../components/FilmNav';
+import { FilmNavigate } from '../../components/FilmNav/FilmNav';
+import { Form } from './MoviesStyled';
 
 const Movies = () => {
   const [Api, setApi] = useState([]);
@@ -31,6 +32,7 @@ const Movies = () => {
     searchQueryApi(query).then(res => {
       setApi(res.data.results);
     });
+    evt.target.reset();
   };
   useEffect(() => {
     if (!query) {
@@ -42,7 +44,7 @@ const Movies = () => {
   }, [query]);
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <ToastContainer />
         <input
           type="text"
@@ -54,7 +56,7 @@ const Movies = () => {
         <button type="submit">
           <FcSearch />
         </button>
-      </form>
+      </Form>
 
       <FilmNavigate Api={Api} />
     </>

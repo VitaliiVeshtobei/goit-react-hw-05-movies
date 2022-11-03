@@ -1,4 +1,5 @@
+import { Text } from './NotFoundStyled';
 const NotFound = () => {
-  return <div>NotFound</div>;
+  return <Text>NotFound</Text>;
 };
 export default NotFound;
