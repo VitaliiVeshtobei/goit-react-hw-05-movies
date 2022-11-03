@@ -13,7 +13,7 @@ export const Cast = () => {
     //     controller.abort();
     //   };
   }, [movieId]);
-  console.log(api);
+
   return (
     <ul>
       {api.map(cast => {

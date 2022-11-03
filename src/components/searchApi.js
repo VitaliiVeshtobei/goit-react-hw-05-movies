@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 export const searchTrendApi = async () => {
   const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/day';
@@ -46,4 +47,17 @@ export const reviewsApi = async id => {
 
   const resolve = await axios(BASE_URL, { params });
   return resolve;
+};
+
+searchQueryApi.propTypes = {
+  query: PropTypes.string,
+};
+detailsApi.propTypes = {
+  id: PropTypes.number,
+};
+creditsApi.propTypes = {
+  id: PropTypes.number,
+};
+reviewsApi.propTypes = {
+  id: PropTypes.number,
 };

@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation, Outlet, Link } from 'react-router-dom';
 import { detailsApi } from '../../components/searchApi';
 import { Container, ContainerInfo } from './MovieDetailsStyled';
 
 const MovieDetails = () => {
-  const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
   const [api, setApi] = useState([]);
+  const location = useLocation();
+  const backPage = useRef(location.state?.from ?? null);
   const { movieId } = useParams();
   useEffect(() => {
     detailsApi(movieId).then(resp => {
       setApi(resp.data);
     });
   }, [movieId]);
+  const backLinkHref = location.state?.from ?? backPage.current;
 
   return (
     <>

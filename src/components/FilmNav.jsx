@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FilmLink, FilmNav } from '../pages/Home/HomeStyled';
 
 export const FilmNavigate = ({ Api }) => {
@@ -16,4 +17,8 @@ export const FilmNavigate = ({ Api }) => {
       </FilmNav>
     );
   });
+};
+
+FilmNavigate.propTypes = {
+  Api: PropTypes.array,
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { FcSearch } from 'react-icons/fc';
@@ -11,11 +11,10 @@ const Movies = () => {
   const [Api, setApi] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
-  const handleChangeSearchQuery = evt => {
-    setSearchParams({ query: evt.currentTarget.value });
-  };
+
   const handleSubmit = async evt => {
     evt.preventDefault();
+    setSearchParams({ query: evt.currentTarget.name.value });
     if (query.trim() === '') {
       toast.error('Enter the name of the movie!', {
         position: 'top-right',
@@ -28,10 +27,19 @@ const Movies = () => {
       });
       return;
     }
+
     searchQueryApi(query).then(res => {
       setApi(res.data.results);
     });
   };
+  useEffect(() => {
+    if (!query) {
+      return;
+    }
+    searchQueryApi(query).then(res => {
+      setApi(res.data.results);
+    });
+  }, [query]);
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -41,7 +49,7 @@ const Movies = () => {
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
-          onChange={handleChangeSearchQuery}
+          name="name"
         />
         <button type="submit">
           <FcSearch />

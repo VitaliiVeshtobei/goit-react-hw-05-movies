@@ -8,21 +8,23 @@ export const Reviews = () => {
     reviewsApi(movieId).then(resp => {
       setApi(resp.data.results);
     });
-    //   return () => {
-    //     const controller = new AbortController();
-    //     controller.abort();
-    //   };
   }, [movieId]);
-  console.log(api);
+
   return (
     <>
       {api.length !== 0 ? (
         <div>
-          <h2>{api[0].author}</h2>
-          <p>{api[0].content}</p>
+          {api.map(item => {
+            return (
+              <>
+                <h2>{item.author}</h2>
+                <p>{item.content}</p>
+              </>
+            );
+          })}
         </div>
       ) : (
-        'no rev'
+        'No Reviews'
       )}
     </>
   );
