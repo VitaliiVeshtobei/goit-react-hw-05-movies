@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 export const Container = styled('div')`
@@ -13,6 +14,7 @@ export const Container = styled('div')`
 export const ContainerInfo = styled('div')`
   margin-left: 16px;
 `;
+
 export const LinkBack = styled(Link)`
   text-decoration: none;
   display: inline-block;
@@ -32,6 +34,7 @@ export const LinkBack = styled(Link)`
     color: #f137a6;
   }
 `;
+
 export const LinkList = styled('ul')`
   list-style: none;
   padding: 0;

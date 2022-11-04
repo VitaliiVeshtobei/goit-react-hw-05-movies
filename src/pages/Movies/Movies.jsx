@@ -4,8 +4,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import { FcSearch } from 'react-icons/fc';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { searchQueryApi } from 'components/searchApi';
+import { searchQueryApi } from '../../api/searchApi';
 import { FilmNavigate } from '../../components/FilmNav/FilmNav';
+
 import { Form } from './MoviesStyled';
 
 const Movies = () => {
@@ -34,14 +35,17 @@ const Movies = () => {
     });
     evt.target.reset();
   };
+
   useEffect(() => {
     if (!query) {
       return;
     }
+
     searchQueryApi(query).then(res => {
       setApi(res.data.results);
     });
   }, [query]);
+
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -62,4 +66,5 @@ const Movies = () => {
     </>
   );
 };
+
 export default Movies;

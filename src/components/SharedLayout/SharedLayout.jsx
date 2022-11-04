@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+
 import { NavItem, Nav } from './SharedLayoutStyled';
 
 export const ShraedLayout = () => {

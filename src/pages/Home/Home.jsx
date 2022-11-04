@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { searchTrendApi } from 'components/searchApi';
+
+import { searchTrendApi } from '../../api/searchApi';
 import { FilmNavigate } from '../../components/FilmNav/FilmNav';
+
 import { Title } from './HomeStyled';
+
 const Home = () => {
   const [Api, setApi] = useState([]);
   useEffect(() => {

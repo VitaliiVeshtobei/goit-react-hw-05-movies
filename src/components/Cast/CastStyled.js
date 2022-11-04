@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const CastList = styled('ul')`
   display: flex;
   justify-content: center;
@@ -8,6 +9,7 @@ export const CastList = styled('ul')`
   margin-right: -16px;
   margin-bottom: -16px;
 `;
+
 export const CastItem = styled('li')`
   text-align: center;
   width: calc(100% / 4 - 90px);

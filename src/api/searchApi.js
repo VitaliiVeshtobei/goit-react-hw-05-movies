@@ -10,6 +10,7 @@ export const searchTrendApi = async () => {
   const resolve = await axios(BASE_URL, { params });
   return resolve;
 };
+
 export const searchQueryApi = async query => {
   const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
   const params = {
@@ -30,6 +31,7 @@ export const detailsApi = async id => {
   const resolve = await axios(BASE_URL, { params });
   return resolve;
 };
+
 export const creditsApi = async id => {
   const BASE_URL = `https://api.themoviedb.org/3/movie/${id}/credits`;
   const params = {
@@ -39,6 +41,7 @@ export const creditsApi = async id => {
   const resolve = await axios(BASE_URL, { params });
   return resolve;
 };
+
 export const reviewsApi = async id => {
   const BASE_URL = `https://api.themoviedb.org/3/movie/${id}/reviews`;
   const params = {

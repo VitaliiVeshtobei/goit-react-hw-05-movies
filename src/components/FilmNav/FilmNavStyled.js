@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+
+import styled from 'styled-components';
 
 export const FilmNav = styled('nav')`
   margin-top: 20px;

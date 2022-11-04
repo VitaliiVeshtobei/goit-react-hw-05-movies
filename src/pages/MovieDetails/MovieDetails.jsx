@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation, Outlet } from 'react-router-dom';
-import { detailsApi } from '../../components/searchApi';
+
+import { detailsApi } from '../../api/searchApi';
+
 import {
   Container,
   ContainerInfo,
@@ -43,7 +45,7 @@ const MovieDetails = () => {
           <p>{api.overview}</p>
           <h3>Genres</h3>
           <p>
-            {api.length !== 0
+            {!!api.length
               ? api.genres.map((genre, idx) => {
                   if (api.genres.length - 1 !== idx) {
                     return `${genre.name}, `;
@@ -66,4 +68,5 @@ const MovieDetails = () => {
     </>
   );
 };
+
 export default MovieDetails;

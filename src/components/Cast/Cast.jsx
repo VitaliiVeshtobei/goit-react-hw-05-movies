@@ -1,8 +1,10 @@
-import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { creditsApi } from '../searchApi';
-import { CastList, CastItem, Image } from './CastStyled';
-import { Text } from './CastStyled';
+import { useParams } from 'react-router-dom';
+
+import { creditsApi } from '../../api/searchApi';
+
+import { CastList, CastItem, Image, Text } from './CastStyled';
+
 export const Cast = () => {
   const [api, setApi] = useState([]);
   const { movieId } = useParams();
@@ -14,7 +16,7 @@ export const Cast = () => {
 
   return (
     <CastList>
-      {api.length !== 0 ? (
+      {!!api.length ? (
         api.map(cast => {
           return (
             <CastItem>

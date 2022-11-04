@@ -1,8 +1,10 @@
-import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { reviewsApi } from '../searchApi';
-import { ReviewsList, ReviewsItem } from './ReviewsStyled';
-import { Text } from './ReviewsStyled';
+import { useParams } from 'react-router-dom';
+
+import { reviewsApi } from '../../api/searchApi';
+
+import { ReviewsList, ReviewsItem, Text } from './ReviewsStyled';
+
 export const Reviews = () => {
   const [api, setApi] = useState([]);
   const { movieId } = useParams();
@@ -14,7 +16,7 @@ export const Reviews = () => {
 
   return (
     <>
-      {api.length !== 0 ? (
+      {!!api.length ? (
         <ReviewsList>
           {api.map(item => {
             return (
