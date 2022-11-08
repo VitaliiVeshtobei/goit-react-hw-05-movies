@@ -45,7 +45,7 @@ const MovieDetails = () => {
           <p>{api.overview}</p>
           <h3>Genres</h3>
           <p>
-            {!!api.length
+            {api.genres
               ? api.genres.map((genre, idx) => {
                   if (api.genres.length - 1 !== idx) {
                     return `${genre.name}, `;
